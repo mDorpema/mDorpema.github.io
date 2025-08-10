@@ -46,9 +46,24 @@
       gap:clamp(16px,4vh,40px); padding:0 var(--gap) var(--gap);
     }
     .copy{ width:100%; max-width:var(--maxw); color:var(--text); }
-    .copy h2{ margin:14px 0 8px; font-size:clamp(20px,2.4vw,28px); }
-    .pub-list{ margin:8px 0 0; padding-left:1.2em; }
-    .pub-list li{ margin:8px 0; }
+    .copy h2{ margin:18px 0 12px; font-size:clamp(20px,2.4vw,28px); }
+    /* No bullets + tighter left edge */
+    .pub-list{
+      list-style: none;
+      padding-left: 0;
+      margin: 10px 0 0;
+    }
+    
+    /* More space between items + a touch more line height */
+    .pub-list li{
+      line-height: 1.65;                               /* more space within each item */
+    }
+    
+    /* Only add vertical space between successive items */
+    .pub-list li + li{
+      margin-top: clamp(12px, 2.4vh, 22px);            /* spacing between lines in a section */
+    }
+
     .title{ font-weight:700; }          /* bold titles only */
     .copy a{ color:inherit; }           /* keep links black */
     .copy a:hover{ text-decoration:underline; }
