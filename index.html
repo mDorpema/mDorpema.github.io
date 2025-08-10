@@ -9,16 +9,17 @@
   <title>Marc Dorpema</title>
   <style>
         /* Global cursor */
-    html, body { cursor: crosshair; }   /* try: default, pointer, crosshair, help, move */
+    /* (Optional) global cursor for the page background */
+    html, body { cursor: crosshair; }
+    
+    /* Hollow black diamond on links/buttons, with PNG fallback */
     a, button {
       cursor:
-        url("assets/cursor-diamond-32.svg") 16 16,
+        url("assets/cursor-diamond-black-32.svg") 16 16,
         url("assets/cursor-diamond-32.png") 16 16,
         pointer;
     }
-        
-    a, button { cursor: url("assets/cursor-diamond-black-32.svg") 16 16, pointer; }
-.on-dark a, .on-dark button { cursor: url("assets/cursor-diamond-white-32.svg") 16 16, pointer; }
+
 
     :root {
       --gap: 24px;
