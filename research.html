@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Research · Marc Dorpema</title>
+
+  <!-- Unbounded font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --gap: 24px; --text: #000; --maxw: 900px; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0; min-height:100svh; color:var(--text);
+      font-family:"Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.5; display:grid; place-items:stretch; background:#000;
+    }
+
+    .hero{
+      position:relative; min-height:100svh;
+      display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
+      background:center / cover no-repeat url("background.jpg");
+      isolation:isolate;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background:rgba(255,255,255,0.75); /* white overlay */
+    }
+
+    .topnav{
+      z-index:1; display:flex; justify-content:center;
+      padding:clamp(18px,4vh,56px) var(--gap);
+    }
+    .topnav a{
+      color:var(--text); text-decoration:none; font-weight:600;
+      font-size:clamp(18px,2.2vw,26px); text-underline-offset:4px;
+    }
+    .topnav a:hover, .topnav a:focus{ text-decoration:underline; }
+
+    .content{
+      z-index:1; display:grid; place-items:center; align-content:start;
+      gap:clamp(16px,4vh,40px); padding:0 var(--gap) var(--gap);
+    }
+    .copy{ width:100%; max-width:var(--maxw); color:var(--text); }
+    .copy h2{ margin:14px 0 8px; font-size:clamp(20px,2.4vw,28px); }
+    .pub-list{ margin:8px 0 0; padding-left:1.2em; }
+    .pub-list li{ margin:8px 0; }
+    .title{ font-weight:700; }          /* bold titles only */
+    .copy a{ color:inherit; }           /* keep links black */
+    .copy a:hover{ text-decoration:underline; }
+
+    .page-label{
+      z-index:1; padding:var(--gap); text-align:center;
+      font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
+      letter-spacing:.04em; user-select:none; pointer-events:none;
+    }
+
+    .sc{
+      text-transform: lowercase;                 /* give the browser lowercase to convert */
+      font-variant-caps: small-caps;             /* Word-style small caps */
+      font-feature-settings: "smcp" 1, "c2sc" 1; /* graceful fallback */
+      letter-spacing: .04em;
+    }
+    
+    /* Make the first letter full-size (bigger) like Word */
+    .sc::first-letter{
+      text-transform: uppercase;  /* show as a full cap */
+      font-variant-caps: normal;  /* not small-caps for the first letter */
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <nav class="topnav" aria-label="Primary">
+      <a class="sc" href="/">Home</a>
+    </nav>
+
+    <section class="content">
+      <div class="copy">
+        <h2>Book Manuscript</h2>
+        <ul class="pub-list">
+          <li><span class="title">Greening Eurocapitalism: A Global Environmental History</span> (manuscript in progress).</li>
+        </ul>
+
+        <h2>Peer-Reviewed Articles (published / under review)</h2>
+        <ul class="pub-list">
+          <li><span class="title">There Is No Geopolitical Turn in the European Project</span>, revision in preparation for the <em>Journal of European Public Policy</em>.</li>
+          <li><span class="title">Assembling Eurocapitalism on a Neoliberal Planet</span>, revision under consideration by <em>Modern Intellectual History</em>.</li>
+          <li>
+            <a class="title" href="https://www.tandfonline.com/doi/abs/10.1080/13642529.2023.2215651" target="_blank" rel="noopener">
+              Narrative, Emplotment, Power: On Agency and the Environment
+            </a>, <em>Rethinking History</em> 27, no. 3 (2023): 511–36.
+          </li>
+          <li>
+            <a class="title" href="https://www.tandfonline.com/doi/full/10.1080/13507486.2022.2051442" target="_blank" rel="noopener">
+              Funny Friends? Dutch Foreign Policy, Great Britain, and European Integration in the ‘Long’ 1970s
+            </a>, <em>European Review of History</em> 29, no. 4 (2022): 695–713.
+          </li>
+          <li>
+            <a class="title" href="https://www.tandfonline.com/doi/full/10.1080/09668136.2021.1884663" target="_blank" rel="noopener">
+              Abkhazia: Recasting ‘Ethnic’ War
+            </a>, <em>Europe-Asia Studies</em> 74, no. 4 (May 2022): 642–59.
+          </li>
+          <li>
+            <a class="title" href="https://www.nomos-elibrary.de/10.5771/0947-9511-2020-2-229.pdf" target="_blank" rel="noopener">
+              The Netherlands, the Environment, and European Integration in the Early 1970s
+            </a>, <em>Journal of European Integration History</em> 26, no. 2 (2020): 229–46.
+          </li>
+          <li>
+            <a class="title" href="https://www.hmongstudiesjournal.org/uploads/4/5/8/7/4587788/dorpemahsj20.pdf" target="_blank" rel="noopener">
+              Constructing Refugees in the Academic Discourse: The Hmong in America
+            </a>, <em>Hmong Studies Journal</em> 20 (2019): 1–33.
+          </li>
+        </ul>
+
+        <h2>Translation</h2>
+        <ul class="pub-list">
+          <li>
+            Xiaoyang Shi, et al., <a class="title" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/ange.201906756" target="_blank" rel="noopener">
+              Sorbenten zur direkten Gewinnung von CO<sub>2</sub> aus der Umgebungsluft
+            </a>, <em>Angewandte Chemie</em> 132 (2020): 7048–7072
+            <span> [original: “Sorbents for the Direct Capture of CO<sub>2</sub> from Ambient Air”]</span>.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="page-label sc">Research</div>
+  </main>
+</body>
+</html>
