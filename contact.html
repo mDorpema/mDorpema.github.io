@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact · Marc Dorpema</title>
+
+  <!-- Unbounded font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --gap: 24px; --text: #000; --maxw: 900px; }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0; min-height:100svh; color:var(--text);
+      font-family:"Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.5; display:grid; place-items:stretch; background:#000;
+    }
+
+    /* Full-screen bg with white overlay */
+    .hero{
+      position:relative; min-height:100svh;
+      display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
+      background:center / cover no-repeat url("background.jpg");
+      isolation:isolate;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background:rgba(255,255,255,0.75); /* white overlay */
+    }
+
+    /* Top-centered Home link */
+    .topnav{
+      z-index:1; display:flex; justify-content:center;
+      padding:clamp(18px,4vh,56px) var(--gap);
+    }
+    .topnav a{
+      color:var(--text); text-decoration:none; font-weight:600;
+      font-size:clamp(18px,2.2vw,26px); text-underline-offset:4px;
+    }
+    .topnav a:hover, .topnav a:focus{ text-decoration:underline; }
+
+    /* Content */
+    .contact{
+      z-index:1; display:grid; place-items:center; align-content:start;
+      gap:clamp(16px,4vh,40px); padding:0 var(--gap) var(--gap);
+    }
+    .copy{
+      width:100%; max-width:var(--maxw);
+      text-align:center; color:var(--text);
+      margin-top:clamp(24px,10vh,120px);
+    }
+    .copy p{ margin:0 0 14px; }
+
+    .email{
+      font-weight:700; font-size:clamp(18px,2.2vw,26px);
+      color:var(--text); text-decoration:none;
+    }
+    .email:hover, .email:focus{ text-decoration:underline; }
+
+    /* Bottom-centered label */
+    .page-label{
+      z-index:1; padding:var(--gap); text-align:center;
+      font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
+      letter-spacing:.04em; user-select:none; pointer-events:none;
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <nav class="topnav" aria-label="Primary">
+      <a href="/">Home</a>
+    </nav>
+
+    <section class="contact">
+      <div class="copy">
+        <p>You can reach via email at</p>
+        <p><a class="email" href="mailto:mdorpema@fas.harvard.edu" aria-label="Email mdorpema at fas dot harvard dot edu">mdorpema@fas.harvard.edu</a></p>
+      </div>
+    </section>
+
+    <div class="page-label">Contact</div>
+  </main>
+</body>
+</html>
