@@ -11,6 +11,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* (Optional) global cursor for the page background */
+    html, body { cursor: crosshair; }
+    
+    /* Hollow black diamond on links/buttons, with PNG fallback */
+    a, button {
+      cursor:
+        url("assets/cursor-diamond-black-32.svg") 16 16,
+        url("assets/cursor-diamond-32.png") 16 16,
+        pointer;
+    }
+
     :root { --gap: 24px; --text: #000; --maxw: 900px; }
 
     * { box-sizing: border-box; }
