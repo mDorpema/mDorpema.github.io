@@ -52,10 +52,31 @@
       margin:20px 0 8px; font-weight:700;
       font-size:clamp(18px,2.1vw,24px);
     }
-    .course-list{ margin:0; padding-left:1.2em; }
-    .course-list li{ margin:6px 0; }
-    /* Bold only the course title part */
-    .course-list strong{ font-weight:700; }
+    .course-list{
+      list-style: none;
+      padding-left: 0;
+      margin: 10px 0 0;
+    }
+    
+    /* More breathing room within each item */
+    .course-list li{
+      line-height: 1.65;
+    }
+    
+    /* Extra space between items */
+    .course-list li + li{
+      margin-top: clamp(12px, 2.4vh, 22px);
+    }
+    
+  .intro{
+    margin: 0 0 18px;
+  }
+    
+    /* Give section headings a bit more air */
+    .section-title{
+      margin: 24px 0 12px;
+    }
+
 
     .page-label{
       z-index:1; padding:var(--gap); text-align:center;
