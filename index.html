@@ -20,7 +20,7 @@
       font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       display: grid;
       place-items: stretch;
-      d: #000;
+      background: #000;
     }
 
     .hero {
@@ -28,7 +28,7 @@
       min-height: 100svh;
       display: grid;
       grid-template-rows: auto 1fr auto; /* top nav, spacer, bottom name */
-      d: center / contain no-repeat url("background.jpg");
+      background: center / contain no-repeat url("background.jpg");
       background-color: #000; /* fills the bars */
       isolation: isolate;
     }
@@ -57,7 +57,7 @@
     }
     nav a:hover, nav a:focus { text-decoration: underline; opacity: 1; }
 
-    .spacer { z-index: 1; } /* middle area stays empty (just the image) */
+    .spacer { z-index: 1; }
 
     .name {
       z-index: 1;
@@ -67,15 +67,14 @@
       font-weight: 600;
       color: var(--text-dim);
       letter-spacing: .06em;
-      text-transform: none; /* keep exact casing */
+      text-transform: none;
       user-select: none;
-      pointer-events: none; /* not clickable */
+      pointer-events: none;
     }
 
-    /* Optional: make the image fixed on large screens (nice effect),
-       but avoid on iOS where it can be janky */
+    /* Optional parallax on large screens */
     @media (min-width: 900px) and (hover: hover) {
-      .hero { d-attachment: fixed; }
+      .hero { background-attachment: fixed; }
     }
   </style>
 </head>
