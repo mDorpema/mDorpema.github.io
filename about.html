@@ -11,90 +11,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --gap: 24px;
-      --text: #111;      /* dark text on white overlay */
-      --muted: #444;
-      --maxw: 900px;
-    }
+    :root { --gap: 24px; --text: #000; --maxw: 900px; }
 
     * { box-sizing: border-box; }
     html, body { height: 100%; }
-    body {
-      margin: 0;
-      min-height: 100svh;
-      color: var(--text);
-      background: #000;
-      font-family: "Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.5;
-      display: grid;
-      place-items: stretch;
+    body{
+      margin:0; min-height:100svh; color:var(--text);
+      font-family:"Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.5; display:grid; place-items:stretch; background:#000;
     }
 
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: grid;
-      grid-template-rows: auto 1fr; /* top nav, content */
-      background: center / cover no-repeat url("background.jpg");
-      isolation: isolate;
+    /* Full-screen bg with white overlay */
+    .hero{
+      position:relative; min-height:100svh;
+      display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
+      background:center / cover no-repeat url("background.jpg");
+      isolation:isolate;
     }
-    /* White overlay for readability over the background */
-    .hero::before {
-      content: "";
-      position: absolute; inset: 0;
-      background: rgba(255,255,255,0.72); /* tweak 0.6–0.8 to taste */
-      z-index: 0;
+    .hero::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background:rgba(255,255,255,0.75); /* white overlay */
     }
 
     /* Top-centered Home link */
-    .topnav {
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      padding: clamp(18px, 4vh, 56px) var(--gap);
+    .topnav{
+      z-index:1; display:flex; justify-content:center;
+      padding:clamp(18px,4vh,56px) var(--gap);
     }
-    .topnav a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: clamp(18px, 2.2vw, 26px);
-      text-underline-offset: 4px;
+    .topnav a{
+      color:var(--text); text-decoration:none; font-weight:600;
+      font-size:clamp(18px,2.2vw,26px); text-underline-offset:4px;
     }
-    .topnav a:hover, .topnav a:focus { text-decoration: underline; }
+    .topnav a:hover, .topnav a:focus{ text-decoration:underline; }
 
-    /* Content area */
-    .about {
-      z-index: 1;
-      display: grid;
-      place-items: center;
-      align-content: start;
-      padding: 0 var(--gap) var(--gap);
-      gap: clamp(16px, 4vh, 40px);
+    /* Main content */
+    .about{
+      z-index:1; display:grid; place-items:center; align-content:start;
+      gap:clamp(16px,4vh,40px); padding:0 var(--gap) var(--gap);
     }
+    .headshot{
+      margin-top:clamp(12px,8vh,96px);
+      max-width:min(90vw, 600px); height:auto; display:block; /* as-is */
+    }
+    .copy{ width:100%; max-width:var(--maxw); text-align:left; color:var(--text); }
+    .copy p{ margin:0 0 14px; color:var(--text); }
 
-    .headshot {
-      margin-top: clamp(12px, 8vh, 96px);
-      max-width: min(90vw, 600px); /* keep it responsive, but don't upscale too big */
-      height: auto;                /* preserve aspect ratio */
-      display: block;
-    }
-
-    .copy {
-      width: 100%;
-      max-width: var(--maxw);
-      text-align: left;
-      color: var(--text);
-    }
-    .copy h1 {
-      margin: 0 0 8px;
-      font-size: clamp(24px, 3.2vw, 36px);
-      font-weight: 700;
-    }
-    .copy p {
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-weight: 400;
+    /* Bottom-centered "About" label */
+    .page-label{
+      z-index:1; padding:var(--gap); text-align:center;
+      font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
+      letter-spacing:.04em; user-select:none; pointer-events:none;
     }
   </style>
 </head>
@@ -106,23 +72,13 @@
 
     <section class="about">
       <img class="headshot" src="headshot.jpg" alt="Portrait of Marc Dorpema">
-
       <div class="copy">
-        <h1>About</h1>
-        <p>
-         My research asks how different forms of political organization have mediated
-         the relationship between capitalism and the environment. Beyond this primary
-emphasis on environmental history, histories of capitalism, and comparative
-political economy, I am interested in architecture, empires, and how power
-flows through nature. I’m currently a Postdoctoral Fellow in the Weatherhead
-Scholars Program at Harvard University.
-        </p>
-        <p>
-          In my free time, I enjoy walking (definitely not running), traveling, and listening
-to all kinds of music.
-        </p>
+        <p>Short intro about Marc Dorpema…</p>
+        <p>Longer paragraph with background, interests, and current work…</p>
       </div>
     </section>
+
+    <div class="page-label">About</div>
   </main>
 </body>
 </html>
