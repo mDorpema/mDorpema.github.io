@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teaching · Marc Dorpema</title>
+
+  <!-- Unbounded font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --gap: 24px; --text: #000; --maxw: 900px; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0; min-height:100svh; color:var(--text);
+      font-family:"Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.5; display:grid; place-items:stretch; background:#000;
+    }
+
+    .hero{
+      position:relative; min-height:100svh;
+      display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
+      background:center / cover no-repeat url("background.jpg");
+      isolation:isolate;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background:rgba(255,255,255,0.75);
+    }
+
+    .topnav{
+      z-index:1; display:flex; justify-content:center;
+      padding:clamp(18px,4vh,56px) var(--gap);
+    }
+    .topnav a{
+      color:var(--text); text-decoration:none; font-weight:600;
+      font-size:clamp(18px,2.2vw,26px); text-underline-offset:4px;
+    }
+    .topnav a:hover, .topnav a:focus{ text-decoration:underline; }
+
+    .content{
+      z-index:1; display:grid; place-items:center; align-content:start;
+      gap:clamp(16px,4vh,40px); padding:0 var(--gap) var(--gap);
+    }
+    .copy{ width:100%; max-width:var(--maxw); color:var(--text); }
+    .intro{ margin:0 0 10px; }
+
+    .section-title{
+      margin:20px 0 8px; font-weight:700;
+      font-size:clamp(18px,2.1vw,24px);
+    }
+    .course-list{ margin:0; padding-left:1.2em; }
+    .course-list li{ margin:6px 0; }
+    /* Bold only the course title part */
+    .course-list strong{ font-weight:700; }
+
+    .page-label{
+      z-index:1; padding:var(--gap); text-align:center;
+      font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
+      letter-spacing:.04em; user-select:none; pointer-events:none;
+    }
+
+    /* Small caps utility (uses real OpenType small-caps when available; otherwise synthesizes) */
+    .sc{
+      font-variant-caps: all-small-caps;
+      font-feature-settings: "smcp" 1, "c2sc" 1; /* harmless if the font lacks these */
+      letter-spacing: .06em;
+    }
+
+
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <nav class="topnav" aria-label="Primary">
+      <a class="sc" href="/">Home</a>
+    </nav>
+
+    <section class="content">
+      <div class="copy">
+        <p class="intro">
+          Teaching is one of my favorite parts of academic life. At NYU, I won the College of Arts and Science’s
+          Outstanding Teaching Award in 2022 and the History Department’s Outstanding Graduate Student Teaching Award in 2022 and 2024.
+          Below is a list of the courses I have been involved in as instructor of record, assistant instructor, or course assistant.
+        </p>
+
+        <div class="section">
+          <div class="section-title sc"><strong>INSTRUCTOR OF RECORD</strong></div>
+          <ul class="course-list">
+            <li><strong class="sc">Histories of Capitalism from Empire to Environment</strong>, Department of History, Summer 2023</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <div class="section-title sc"><strong>ASSISTANT INSTRUCTOR OR COURSE ASSISTANT</strong></div>
+          <ul class="course-list">
+            <li><strong class="sc">Political Economy of Education</strong>, Department of Applied Statistics, Social Science, and Humanities, Spring 2025</li>
+            <li><strong class="sc">Introduction to US Education</strong>, Department of Applied Statistics, Social Science, and Humanities, Fall 2023</li>
+            <li><strong class="sc">East Asia</strong>, College Core Curriculum, Spring 2023</li>
+            <li><strong class="sc">Espionage &amp; the Making of the Modern World</strong>, Department of History, Fall 2022</li>
+            <li><strong class="sc">History in the Headlines</strong>, Department of History, Summer/Fall 2021</li>
+            <li><strong class="sc">Multinational Britain</strong>, College Core Curriculum, Spring 2021</li>
+            <li><strong class="sc">History in the Headlines</strong>, Department of History, Fall 2020</li>
+            <li><strong class="sc">Modern Europe</strong>, Department of History, Spring 2020</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-label sc">Teaching</div>
+  </main>
+</body>
+</html>
