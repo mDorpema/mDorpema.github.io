@@ -1,23 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Marc Dorpema</title>
   <style>
+    :root {
+      --gap: 24px;
+      --text: #ffffff;
+      --text-dim: #eaeaea;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
       margin: 0;
-      height: 100vh;
-      background: black;
-      color: white;
+      min-height: 100svh; /* better on mobile */
+      color: var(--text);
+      font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      display: grid;
+      place-items: stretch;
+      background: #000;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto; /* top nav, spacer, bottom name */
+      background: center / cover no-repeat url("background.jpg");
+      /* add a subtle dark overlay for readability */
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
+      z-index: 0;
+    }
+
+    nav {
+      z-index: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      font-family: sans-serif;
+      gap: clamp(12px, 4vw, 32px);
+      padding: var(--gap);
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .02em;
+      font-weight: 500;
+      opacity: .95;
+    }
+    nav a:hover, nav a:focus { text-decoration: underline; opacity: 1; }
+
+    .spacer { z-index: 1; } /* middle area stays empty (just the image) */
+
+    .name {
+      z-index: 1;
+      padding: var(--gap);
+      text-align: center;
+      font-size: clamp(18px, 2.8vw, 28px);
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: .06em;
+      text-transform: none; /* keep exact casing */
+      user-select: none;
+      pointer-events: none; /* not clickable */
+    }
+
+    /* Optional: make the image fixed on large screens (nice effect),
+       but avoid on iOS where it can be janky */
+    @media (min-width: 900px) and (hover: hover) {
+      .hero { background-attachment: fixed; }
     }
   </style>
 </head>
 <body>
-  Coming soon...
+  <main class="hero">
+    <nav aria-label="Primary">
+      <a href="/about.html">About</a>
+      <a href="/research.html">Research</a>
+      <a href="/teaching.html">Teaching</a>
+      <a href="/cv.pdf">CV</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="spacer" aria-hidden="true"></div>
+
+    <div class="name">Marc Dorpema</div>
+  </main>
 </body>
 </html>
