@@ -77,6 +77,19 @@
       user-select: none;
       pointer-events: none;
     }
+    
+    .sc{
+      text-transform: lowercase;                 /* give the browser lowercase to convert */
+      font-variant-caps: small-caps;             /* Word-style small caps */
+      font-feature-settings: "smcp" 1, "c2sc" 1; /* graceful fallback */
+      letter-spacing: .04em;
+    }
+    
+    /* Make the first letter full-size (bigger) like Word */
+    .sc::first-letter{
+      text-transform: uppercase;  /* show as a full cap */
+      font-variant-caps: normal;  /* not small-caps for the first letter */
+    }
     /* Optional parallax on large screens */
     @media (min-width: 900px) and (hover: hover) {
       .hero { background-attachment: fixed; }
@@ -86,11 +99,11 @@
 <body>
   <main class="hero">
     <nav aria-label="Primary">
-      <a href="/about.html">About</a>
-      <a href="/research.html">Research</a>
-      <a href="/teaching.html">Teaching</a>
-      <a href="/CV.pdf">CV</a>
-      <a href="/contact.html">Contact</a>
+      <a class="sc" href="/about.html">About</a>
+      <a class="sc" href="/research.html">Research</a>
+      <a class="sc" href="/teaching.html">Teaching</a>
+      <a class="sc" href="/CV.pdf">CV</a>
+      <a class="sc" href="/contact.html">Contact</a>
     </nav>
 
     <div class="spacer" aria-hidden="true"></div>
