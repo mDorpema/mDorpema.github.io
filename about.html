@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About · Marc Dorpema</title>
+
+  <!-- Unbounded font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gap: 24px;
+      --text: #111;      /* dark text on white overlay */
+      --muted: #444;
+      --maxw: 900px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      color: var(--text);
+      background: #000;
+      font-family: "Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      display: grid;
+      place-items: stretch;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr; /* top nav, content */
+      background: center / cover no-repeat url("background.jpg");
+      isolation: isolate;
+    }
+    /* White overlay for readability over the background */
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.72); /* tweak 0.6–0.8 to taste */
+      z-index: 0;
+    }
+
+    /* Top-centered Home link */
+    .topnav {
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      padding: clamp(18px, 4vh, 56px) var(--gap);
+    }
+    .topnav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: clamp(18px, 2.2vw, 26px);
+      text-underline-offset: 4px;
+    }
+    .topnav a:hover, .topnav a:focus { text-decoration: underline; }
+
+    /* Content area */
+    .about {
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      align-content: start;
+      padding: 0 var(--gap) var(--gap);
+      gap: clamp(16px, 4vh, 40px);
+    }
+
+    .headshot {
+      margin-top: clamp(12px, 8vh, 96px);
+      width: clamp(140px, 22vw, 220px);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 999px;          /* circle */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      border: 4px solid rgba(255,255,255,0.8);
+    }
+
+    .copy {
+      width: 100%;
+      max-width: var(--maxw);
+      text-align: left;
+      color: var(--text);
+    }
+    .copy h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 700;
+    }
+    .copy p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <nav class="topnav" aria-label="Primary">
+      <a href="/">Home</a>
+    </nav>
+
+    <section class="about">
+      <img class="headshot" src="headshot.jpg" alt="Portrait of Marc Dorpema">
+
+      <div class="copy">
+        <h1>About</h1>
+        <p>
+          Short intro about Marc Dorpema. You can put a few sentences here about your research focus,
+          teaching interests, or current projects.
+        </p>
+        <p>
+          Longer paragraph goes here. Mention your institution, recent publications, or themes you’re
+          exploring. Keep it concise and scannable; add links if you’d like.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
