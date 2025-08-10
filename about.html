@@ -54,7 +54,10 @@
       max-width:min(90vw, 600px); height:auto; display:block; /* as-is */
     }
     .copy{ width:100%; max-width:var(--maxw); text-align:left; color:var(--text); }
-    .copy p{ margin:0 0 14px; color:var(--text); }
+    /* bigger space between paragraphs, none after the last */
+    .copy p:not(:last-child){
+      margin-bottom: clamp(18px, 3.2vh, 36px);
+    }
     .copy a { color: inherit; text-decoration: underline; }
 
     /* Bottom-centered "About" label */
