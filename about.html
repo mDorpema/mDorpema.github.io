@@ -2,58 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Make iOS Safari use the full screen and respect notches -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
   <title>About · Marc Dorpema</title>
 
-  <!-- Unbounded font -->
+  <!-- Unbounded font (swap so text shows immediately) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Global cursor */
-    /* (Optional) global cursor for the page background */
-    html, body { cursor: crosshair; }
-    
-    /* Hollow black diamond on links/buttons, with PNG fallback */
-    a, button {
-      cursor:
-        url("cursor-diamond-32.png") 16 16,
-        pointer;
-    }
-
-
-
     :root { --gap: 24px; --text: #000; --maxw: 900px; }
 
     * { box-sizing: border-box; }
     html, body { height: 100%; }
+
+    /* Prevent odd auto-zoom/font-boost on mobile */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
     body{
-      margin:0; min-height:100svh; color:var(--text);
+      margin:0; min-height:100vh; color:var(--text);
       font-family:"Unbounded", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.5; display:grid; place-items:stretch; background:#000;
     }
 
-    /* Full-screen bg with white overlay */
+    /* Full-screen hero with responsive background image */
     .hero{
-      position:relative; min-height:100svh;
-      display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
-      background:center / cover no-repeat url("background.jpg");
-      isolation:isolate;
+      position:relative; display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
+      min-height:100vh; isolation:isolate;
     }
-    .hero::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background:rgba(255,255,255,0.75); /* white overlay */
+    /* Use dynamic viewport height where supported (mobile browser chrome safe) */
+    @supports (min-height: 100dvh) {
+      .hero { min-height:100dvh; }
     }
 
-    /* Top-centered Home link */
+    /* Background image as real <img> so we can use srcset + sizes */
+    .hero-media{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+    .hero-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    /* White overlay for readability */
+    .hero-media::after{
+      content:""; position:absolute; inset:0; background:rgba(255,255,255,0.75);
+    }
+
+    /* Top-centered Home link with safe-area padding for notches */
     .topnav{
       z-index:1; display:flex; justify-content:center;
-      padding:clamp(18px,4vh,56px) var(--gap);
+      padding: clamp(18px,4vh,56px) var(--gap) 0 var(--gap);
+      padding-top: calc(clamp(18px,4vh,56px) + env(safe-area-inset-top));
     }
     .topnav a{
       color:var(--text); text-decoration:none; font-weight:600;
       font-size:clamp(18px,2.2vw,26px); text-underline-offset:4px;
+      line-height:1; padding: 10px 14px; /* larger tap target */
     }
     .topnav a:hover, .topnav a:focus{ text-decoration:underline; }
 
@@ -62,57 +63,83 @@
       z-index:1; display:grid; place-items:center; align-content:start;
       gap:clamp(16px,4vh,40px); padding:0 var(--gap) var(--gap);
     }
+
+    /* Responsive headshot (use your single headshot.jpg everywhere for now; swap in real sizes later) */
     .headshot{
       margin-top:clamp(12px,8vh,96px);
-      max-width:min(90vw, 600px); height:auto; display:block; /* as-is */
+      max-width:min(90vw, 600px); height:auto; display:block; border-radius:16px;
     }
+
     .copy{ width:100%; max-width:var(--maxw); text-align:left; color:var(--text); }
-    /* bigger space between paragraphs, none after the last */
-    .copy p:not(:last-child){
-      margin-bottom: clamp(22px, 3.2vh, 30px);
-    }
+    /* comfortable paragraph spacing */
+    .copy p{ margin:0; }
+    .copy p + p{ margin-top: clamp(18px, 2.6vh, 28px); }
     .copy a { color: inherit; text-decoration: underline; }
 
-    /* Bottom-centered "About" label */
+    /* Bottom-centered label with safe-area padding */
     .page-label{
-      z-index:1; padding:var(--gap); text-align:center;
-      font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
+      z-index:1; padding:var(--gap); padding-bottom: calc(var(--gap) + env(safe-area-inset-bottom));
+      text-align:center; font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
       letter-spacing:.04em; user-select:none; pointer-events:none;
     }
 
+    /* Small-caps utility */
     .sc{
       text-transform: lowercase;                 /* give the browser lowercase to convert */
       font-variant-caps: small-caps;             /* Word-style small caps */
       font-feature-settings: "smcp" 1, "c2sc" 1; /* graceful fallback */
       letter-spacing: .04em;
     }
-    
-    /* Make the first letter full-size (bigger) like Word */
-    .sc::first-letter{
-      text-transform: uppercase;  /* show as a full cap */
-      font-variant-caps: normal;  /* not small-caps for the first letter */
-    }
+    .sc::first-letter{ text-transform: uppercase; font-variant-caps: normal; }
 
+    /* Fun cursor on desktop only (don’t force cursors on touch) */
+    @media (hover: hover) and (pointer: fine) {
+      html, body { cursor: crosshair; }
+      a, button {
+        cursor: url("cursor-diamond-32.png") 16 16, pointer;
+      }
+    }
   </style>
 </head>
 <body>
   <main class="hero">
+    <!-- Responsive background image with overlay -->
+    <div class="hero-media" aria-hidden="true">
+      <picture>
+        <!-- If you export multiple sizes later, swap these three repeated URLs with real 800/1600/2400 assets -->
+        <img
+          src="background.jpg"
+          srcset="background.jpg 800w, background.jpg 1600w, background.jpg 2400w"
+          sizes="100vw"
+          alt=""
+          width="2400" height="1600"
+          decoding="async" fetchpriority="high"
+        />
+      </picture>
+    </div>
+
     <nav class="topnav" aria-label="Primary">
       <a class="sc" href="/">Home</a>
     </nav>
 
     <section class="about">
-      <img class="headshot" src="headshot.jpg" alt="Portrait of Marc Dorpema">
+      <img
+        class="headshot"
+        src="headshot.jpg"
+        srcset="headshot.jpg 480w, headshot.jpg 800w, headshot.jpg 1200w"
+        sizes="(max-width: 640px) 90vw, 600px"
+        width="800" height="800"
+        alt="Portrait of Marc Dorpema"
+        decoding="async" fetchpriority="high"
+      />
+
       <div class="copy">
         <p>My research asks how different forms of political organization have mediated the relationship between capitalism and the environment over the past half century. I do so through multiple disciplinary lenses that include environmental history, histories of capitalism, comparative political economy, and international relations. Further interests include empires, architecture, and how power flows through nature.</p>
         <p>
-  Currently, I’m a Postdoctoral Fellow in the
-  <a href="https://scholarsprogram.wcfia.harvard.edu/people/marc-dorpema" target="_blank" rel="noopener">
-    Weatherhead Scholars Program
-  </a>
-  at Harvard University, where I’m working on turning my dissertation into a book.
-</p>
-
+          Currently, I’m a Postdoctoral Fellow in the
+          <a href="https://scholarsprogram.wcfia.harvard.edu/people/marc-dorpema" target="_blank" rel="noopener">Weatherhead Scholars Program</a>
+          at Harvard University, where I’m working on turning my dissertation into a book.
+        </p>
         <p>In my free time, I enjoy walking (definitely not running), traveling, and listening to all kinds of music.</p>
       </div>
     </section>
