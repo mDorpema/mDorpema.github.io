@@ -96,6 +96,35 @@
       text-transform: uppercase;  /* show as a full cap */
       font-variant-caps: normal;  /* not small-caps for the first letter */
     }
+    /* === MOBILE-ONLY OVERRIDES === */
+    /* Triggers on small screens OR touch-only devices */
+    @media (max-width: 768px), (hover: none) and (pointer: coarse) {
+      /* 1) Let the page grow & scroll */
+      html, body { height: auto; }   /* undo any height:100% */
+      body { display: block; }        /* undo display:grid on body */
+    
+      /* 2) Make the hero simple and resilient on mobile */
+      .hero {
+        display: flex;
+        flex-direction: column;       /* top nav, content, bottom label */
+        min-height: 100vh;
+        align-content: stretch;
+      }
+      /* Prefer dynamic viewport height on modern mobile browsers */
+      @supports (min-height: 100dvh) {
+        .hero { min-height: 100dvh; }
+      }
+    
+      /* 3) Middle section expands (pick the one you have) */
+      .about, .spacer { flex: 1 0 auto; }
+    
+      /* 4) Overlay shouldn’t block taps */
+      .hero::before, .hero-media { pointer-events: none; }
+    
+      /* Optional: avoid fancy cursor on touch */
+      a, button { cursor: pointer; }
+    }
+
   </style>
 </head>
 <body>
