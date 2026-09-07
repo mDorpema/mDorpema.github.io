@@ -13,15 +13,13 @@
     /* Global cursor */
     /* (Optional) global cursor for the page background */
     html, body { cursor: crosshair; }
-    
+
     /* Hollow black diamond on links/buttons, with PNG fallback */
     a, button {
       cursor:
         url("cursor-diamond-32.png") 16 16,
         pointer;
     }
-
-
 
     :root { --gap: 24px; --text: #000; --maxw: 900px; }
 
@@ -30,14 +28,15 @@
     body{
       margin:0; min-height:100svh; color:var(--text);
       font-family: "Charis SIL", Palatino, Georgia, serif;
-      line-height:1.5; display:grid; place-items:stretch; background:#000;
+      line-height:1.5; display:grid; place-items:stretch;
+      background: center / cover no-repeat url("background.jpg");
+      background-attachment: fixed;
     }
 
-    /* Full-screen bg with white overlay */
+    /* Full-screen hero with white overlay (background image now lives on body) */
     .hero{
       position:relative; min-height:100svh;
       display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
-      background:center / cover no-repeat url("background.jpg");
       isolation:isolate;
     }
     .hero::before{
@@ -85,7 +84,7 @@
       font-feature-settings: "smcp" 1, "c2sc" 1; /* graceful fallback */
       letter-spacing: .04em;
     }
-    
+
     /* Make the first letter full-size (bigger) like Word */
     .sc::first-letter{
       text-transform: uppercase;  /* show as a full cap */
@@ -98,7 +97,7 @@
       /* 1) Let the page grow & scroll */
       html, body { height: auto; }   /* undo any height:100% */
       body { display: block; }        /* undo display:grid on body */
-    
+
       /* 2) Make the hero simple and resilient on mobile */
       .hero {
         display: flex;
@@ -110,13 +109,16 @@
       @supports (min-height: 100dvh) {
         .hero { min-height: 100dvh; }
       }
-    
+
+      /* On mobile, background-attachment: fixed can cause rendering issues, so switch to scroll */
+      body { background-attachment: scroll; }
+
       /* 3) Middle section expands (pick the one you have) */
       .about, .spacer { flex: 1 0 auto; }
-    
-      /* 4) Overlay shouldn’t block taps */
+
+      /* 4) Overlay shouldn't block taps */
       .hero::before, .hero-media { pointer-events: none; }
-    
+
       /* Optional: avoid fancy cursor on touch */
       a, button { cursor: pointer; }
     }
@@ -135,7 +137,7 @@
       <div class="copy">
         <p>My research asks how different forms of political organization have mediated the relationship between capitalism and the environment over the past half century. I do so through multiple disciplinary lenses that include environmental history, histories of capitalism, comparative political economy, and international relations. Further interests include empires, architecture, and how power flows through nature.</p>
         <p>
-  Currently, I’m a Research Excellence Postdoctoral Fellow at the University of Toronto, where I’m working on the manuscript for my first book.
+  Currently, I'm a Research Excellence Postdoctoral Fellow at the University of Toronto, where I'm working on the manuscript for my first book.
 </p>
 
         <p>In my free time, I enjoy walking (definitely not running), sunshine, and listening to all kinds of music.</p>
