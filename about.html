@@ -33,15 +33,19 @@
       background-attachment: fixed;
     }
 
-    /* Full-screen hero with white overlay (background image now lives on body) */
+    /* Fixed full-viewport white overlay, always covers the body background image */
+    body::before{
+      content:""; position:fixed; inset:0; z-index:0;
+      background:rgba(255,255,255,0.75); /* white overlay */
+      pointer-events:none;
+    }
+
+    /* Full-screen hero (background image lives on body; overlay lives on body::before) */
     .hero{
       position:relative; min-height:100svh;
       display:grid; grid-template-rows:auto 1fr auto; /* top nav, content, bottom label */
       isolation:isolate;
-    }
-    .hero::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background:rgba(255,255,255,0.75); /* white overlay */
+      z-index:1;
     }
 
     /* Top-centered Home link */
@@ -51,7 +55,7 @@
     }
     .topnav a{
       color:var(--text); text-decoration:none; font-weight:700;
-      font-size:clamp(18px,2.2vw,26px); text-underline-offset:4px;
+      font-size:clamp(19px,2.2vw,27px); text-underline-offset:4px;
     }
     .topnav a:hover, .topnav a:focus{ text-decoration:underline; }
 
@@ -64,7 +68,7 @@
       margin-top:clamp(12px,8vh,96px);
       max-width:min(90vw, 600px); height:auto; display:block; /* as-is */
     }
-    .copy{ width:100%; max-width:var(--maxw); text-align:left; color:var(--text); }
+    .copy{ width:100%; max-width:var(--maxw); text-align:left; color:var(--text); font-size:17px; }
     /* bigger space between paragraphs, none after the last */
     .copy p:not(:last-child){
       margin-bottom: clamp(22px, 3.2vh, 30px);
@@ -74,7 +78,7 @@
     /* Bottom-centered "About" label */
     .page-label{
       z-index:1; padding:var(--gap); text-align:center;
-      font-size:clamp(22px,3vw,34px); font-weight:700; color:var(--text);
+      font-size:clamp(23px,3vw,35px); font-weight:700; color:var(--text);
       letter-spacing:.04em; user-select:none; pointer-events:none;
     }
 
